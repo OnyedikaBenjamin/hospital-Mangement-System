@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-5">
+        <h3>Individuals' Outstandings</h3>
+        <div class="card card-body">
+            <table class="table table-striped">
+                <thead> 
+                    <th>Patient</th>
+                    <th>Outstanding</th>
+                    <th>Paid</th>
+                    <th>Reminder</th>
+                </thead>
+                {% for obj in payment_ind %}
+                <tr>
+                    <td>{{ obj.patient }}</td>
+                    <td>{{ obj.outstanding }}</td>
+                    <td>{{ obj.paid }}</td>
+                    <td><button class="btn btn-primary">Set Reminder</button></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <h3>Consultings' Outstandings</h3>
+        <div class="card card-body">
+            <table class="table table-striped">
+                <thead> 
+                    <th>Date</th>
+                    <th>Patient Name</th>
+                    <th>Paid</th>
+                    <th>Outstanding</th>
+                    <th>Total</th>
+                    <th>Invoice</th>
+                </thead>
+                {% for obj in payment_cons %}
+                <tr>
+                    <td>{{ obj.date }}</td>
+                    <td>{{ obj.patient }}</td>
+                    <td>{{ obj.paid }}</td>
+                    <td>{{ obj.outstanding }}</td>
+                    <td>{{ obj.total }}</td>
+                    <td><a href="">Open Invoice</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

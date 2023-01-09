@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h3>Your Payments & Invoices</h3>
+        <br>
+        <div class="card card-body">
+            <table class="table table-striped">
+                <thead> 
+                    <th>Invoice</th>
+                    <th>Paid</th>
+                    <th>Date</th>
+                    <th>Outstanding</th>
+                </thead>
+                {% for obj in payment_me %}
+                <tr>
+                    <td><a href="">Open Invoice</a></td>
+                    <td>{{ obj.paid }}</td>
+                    <td>{{ obj.date }}</td>
+                    <td>{{ obj.outstanding }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

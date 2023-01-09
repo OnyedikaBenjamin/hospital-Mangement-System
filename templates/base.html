@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Hospital</title>
+    <!-- Latest compiled and minified CSS -->
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+
+    <!-- Optional theme -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+      integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+      crossorigin="anonymous"
+    />
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse" role="navigation" id="navbar">
+      <div class="container">
+        <a class="navbar-brand mynav" href="{% url 'account:home' %}"
+          >Don Royale Hospital</a
+        >
+
+        <ul class="nav navbar-nav navbar-right mynav">
+          {% if user.is_authenticated %} {% if user.is_doctor %}
+          <!-- doctor's dashboard -->
+          <li>
+            <a href="{% url 'account:home' %}" class="btn btn-simple">Home</a>
+          </li>
+          <li>
+            <a href="{% url 'account:about-us' %}" class="btn btn-simple"
+              >About Us</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'account:contact' %}" class="btn btn-simple"
+              >Contact</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'user_profile:profile' %}" class="btn btn-simple"
+              >Profile</a
+            >
+          </li>
+          <li>
+            <a
+              href="{% url 'appointment:doctor-appointments' %}"
+              class="btn btn-simple"
+              >Appointments</a
+            >
+          </li>
+          <li>
+            <a
+              href="{% url 'appointment:doc-prescriptions' %}"
+              class="btn btn-simple"
+              >Prescriptions</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'account:logout' %}" class="btn btn-simple"
+              ><button class="btn btn-warning">Log Out</button></a
+            >
+          </li>
+          {% endif %} {% if user.is_patient %}
+          <!-- patient's dashboard -->
+          <li>
+            <a href="{% url 'account:home' %}" class="btn btn-simple">Home</a>
+          </li>
+          <li>
+            <a href="{% url 'account:about-us' %}" class="btn btn-simple"
+              >About Us</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'account:contact' %}" class="btn btn-simple"
+              >Contact</a
+            >
+          </li>
+          <li>
+            <a
+              href="{% url 'appointment:patient-appointments' %}"
+              class="btn btn-simple"
+              >Your Appointment's</a
+            >
+          </li>
+          <li>
+            <a
+              href="{% url 'appointment:pat_payments' %}"
+              class="btn btn-simple"
+              >Invoices and Payments</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'user_profile:profile' %}" class="btn btn-simple"
+              >Profile</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'appointment:med-history' %}" class="btn btn-simple"
+              >Medical History</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'account:logout' %}" class="btn btn-simple"
+              ><button class="btn btn-warning">Log Out</button></a
+            >
+          </li>
+          {% endif %} {% if user.is_receptionist %}
+          <!-- receptionist's dashboard -->
+          <li>
+            <a href="{% url 'account:home' %}" class="btn btn-simple">Home</a>
+          </li>
+          <li>
+            <a href="{% url 'account:about-us' %}" class="btn btn-simple"
+              >About Us</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'account:contact' %}" class="btn btn-simple"
+              >Contact</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'appointment:r_dashboard' %}" class="btn btn-simple"
+              >Dashboard</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'account:logout' %}" class="btn btn-simple"
+              ><button class="btn btn-warning">Log Out</button></a
+            >
+          </li>
+          {% endif %} {% if user.is_HR %}
+          <!-- HR's dashboard -->
+          <li>
+            <a href="{% url 'account:home' %}" class="btn btn-simple">Home</a>
+          </li>
+          <li>
+            <a href="{% url 'account:about-us' %}" class="btn btn-simple"
+              >About Us</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'account:contact' %}" class="btn btn-simple"
+              >Contact</a
+            >
+          </li>
+          <li>
+            <a
+              href="{% url 'appointment:hr_dashboard' %}"
+              class="btn btn-simple"
+              >Dashboard</a
+            >
+          </li>
+          <li>
+            <a
+              href="{% url 'appointment:hr_accounting' %}"
+              class="btn btn-simple"
+              >Accounting</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'account:logout' %}" class="btn btn-simple"
+              ><button class="btn btn-warning">Log Out</button></a
+            >
+          </li>
+          {% endif %} {% else %}
+          <li>
+            <a href="{% url 'account:home' %}" class="btn btn-simple">Home</a>
+          </li>
+          <li>
+            <a href="{% url 'account:about-us' %}" class="btn btn-simple"
+              >About Us</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'account:contact' %}" class="btn btn-simple"
+              >Contact</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'account:signup' %}" class="btn btn-simple"
+              >Register</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'account:login' %}" class="btn btn-simple"
+              ><button class="btn btn-success">Log In</button></a
+            >
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <div class="container mycontent">{% block content %} {% endblock %}</div>
+
+    <canvas id="canvas"></canvas>
+  </body>
+</html>

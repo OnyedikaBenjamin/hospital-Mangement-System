@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="container">
+    {% if user.is_patient %}
+    <h2>Your Medical History</h2>
+    <br>
+    <ul class="list-group">
+        {% for obj in object_list %}
+        <li class="list-group-item">
+            <h3><strong>{{ obj.date }}</strong></h3>
+            <p>Symptoms - {{ obj.symptoms }}</p>
+            <p>Prescription - {{ obj.prescription }}</p>
+            <button class="btn btn-primary">Learn More</button>
+        </li>
+        {% endfor %}
+    {% endif %}
+    {% if user.is_doctor %}
+    <h2>Your Prescriptions</h2>
+    <a href="{% url 'appointment:doc-prescriptions-create' %}"><button class="btn btn-primary pull-right">Create New Prescription</button></a>
+    <br> <br>
+    <ul class="list-group">
+        {% for obj in object_list %}
+        <li class="list-group-item">
+            <h3><strong>{{ obj.date }}</strong></h3>
+            <p>Symptoms - {{ obj.symptoms }}</p>
+            <p>Prescription - {{ obj.prescription }}</p>
+            <p>Patient Name - {{ obj.patient }}</p>
+        </li>
+        {% endfor %}
+    {% endif %}
+    </ul>
+</div>
+{% endblock %}
